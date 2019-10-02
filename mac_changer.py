@@ -2,6 +2,7 @@
 
 import subprocess
 import optparse
+import re
 
 
 def get_arguments():
@@ -24,4 +25,11 @@ def change_mac(interface, new_mac):
 
 
 options = get_arguments()
-change_mac(options.interface, options.new_mac)
+# change_mac(options.interface, options.new_mac)
+
+ifconfig_results = subprocess.check_output(["ifconfig", options.interface])
+print(ifconfig_results)
+
+#Use Pythex to create Regex
+# mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_results)
+# print(mac_address_search_result.group(0))
